@@ -9,9 +9,12 @@ class ExpenseCreate(BaseModel):
     description: str | None = None       # opcional
     date: date
 
-
 # Lo que la API DEVUELVE. Incluye el id que genera la BD.
 class ExpenseOut(ExpenseCreate):
     id: int
 
     model_config = {"from_attributes": True}  # permite crear el schema desde el objeto ORM
+
+class Summary(BaseModel):
+    total: float
+    by_category: dict[str, float]
