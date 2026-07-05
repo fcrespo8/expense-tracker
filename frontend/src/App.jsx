@@ -19,12 +19,13 @@ function App() {
       setExpenses(expensesData);
       setSummary(summaryData);
       setError(null);
-    } catch (e) {
+    } catch {
       setError("No se pudieron cargar los gastos. ¿Está el servidor encendido?");
     }
   }
 
   // Carga inicial, una sola vez al montar.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     loadData();
   }, []);
@@ -33,7 +34,7 @@ function App() {
     try {
       await createExpense(expense);
       await loadData(); // refetch: el backend recalcula lista y summary.
-    } catch (e) {
+    } catch {
       setError("No se pudo crear el gasto. Revisá los datos.");
     }
   }
@@ -42,15 +43,15 @@ function App() {
     try {
       await deleteExpense(id);
       await loadData(); // refetch tras borrar.
-    } catch (e) {
+    } catch {
       setError("No se pudo borrar el gasto.");
     }
   }
 
   return (
-    <div>
+    <div className="container">
       <h1>Gestor de gastos</h1>
-      {error && <p style={{ color: "red" }}>{error}</p>}
+      {error && <p className="error">{error}</p>}
       <ExpenseForm onAdd={handleAdd} />
       <Summary summary={summary} />
       <ExpenseList expenses={expenses} onDelete={handleDelete} />
