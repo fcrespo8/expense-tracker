@@ -44,3 +44,12 @@ li {
 li button {
   margin-left: 1rem;
 }
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.error {
+  color: #ff6b6b;
+}

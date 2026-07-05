@@ -26,16 +26,7 @@ function App() {
 
   // Carga inicial, una sola vez al montar.
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        // Idealmente aquí llamas a tu API con await antes de actualizar cualquier estado
-        await loadData();
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchData();
+    loadData();
   }, []);
 
   async function handleAdd(expense) {
